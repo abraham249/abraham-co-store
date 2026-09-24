@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Abraham Co Store</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #171717;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #111;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+    }
+
+    .login-box h1 {
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #111;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: #111;
+      color: white;
+    }
+
+    .btn-danger {
+      background: #b00020;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e9e9e9;
+      color: #111;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .dashboard {
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      font-size: 20px;
+    }
+
+    .logout {
+      background: white;
+      color: #111;
+      border: 0;
+      padding: 9px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .stat small {
+      color: #777;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat strong {
+      font-size: 25px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+    }
+
+    .products {
+      display: grid;
+      gap: 12px;
+    }
+
+    .product-row {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .product-row img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #eee;
+    }
+
+    .product-info h3 {
+      margin-bottom: 5px;
+    }
+
+    .product-info p {
+      color: #666;
+      font-size: 14px;
+      margin: 3px 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .close {
+      border: 0;
+      background: #eee;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .message.success {
+      display: block;
+      background: #e8f7ed;
+      color: #126b35;
+    }
+
+    .message.error {
+      display: block;
+      background: #fdeaea;
+      color: #9b111e;
+    }
+
+    @media (max-width: 800px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-row {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .product-row img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .section {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginPage" class="login-page">
+    <div class="login-box">
+      <h1>Abraham Co Store</h1>
+      <p>Admin Dashboard</p>
+
+      <div id="loginMessage" class="message"></div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="email">Admin Email</label>
+          <input
+            type="email"
+            id="email"
+            required
+            autocomplete="username"
+            placeholder="Enter admin email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Admin Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            autocomplete="current-password"
+            placeholder="Enter admin password"
+          >
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width:100%;">
+          Login
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="dashboard hidden">
+
+    <header>
+      <h1>Abraham Co Store — Admin</h1>
+      <button class="logout" onclick="logout()">Logout</button>
+    </header>
+
+    <main class="container">
+
+      <!-- STATS -->
+      <div class="stats">
+
+        <div class="stat">
+          <small>Products</small>
+          <strong id="productCount">0</strong>
+        </div>
+
+        <div class="stat">
+          <small>Orders</small>
+          <strong id="orderCount">0</strong>
+        </div>
+
+        <div class="stat">
+          <small>Customers</small>
+          <strong id="customerCount">0</strong>
+        </div>
+
+        <div class="stat">
+          <small>Messages</small>
+          <strong id="messageCount">0</strong>
+        </div>
+
+      </div>
+
+
+      <!-- PRODUCTS -->
+      <section class="section">
+
+        <div class="section-header">
+          <h2>Products</h2>
+
+          <button
+            class="btn btn-primary"
+            onclick="openProductModal()"
+          >
+            + Add Product
+          </button>
+        </div>
+
+        <div id="productMessage" class="message"></div>
+
+        <div id="products" class="products">
+          Loading products...
+        </div>
+
+      </section>
+
+
+      <!-- QUICK INFORMATION -->
+      <section class="section">
+
+        <div class="section-header">
+          <h2>Admin Information</h2>
+        </div>
+
+        <p style="color:#666;line-height:1.6;">
+          From this dashboard you will be able to manage your store
+          products and, as we continue building the dashboard, orders,
+          customers, reviews, FAQs, delivery options, promotions,
+          messages and store settings.
+        </p>
+
+      </section>
+
+    </main>
+  </div>
+
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal hidden">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Product</h2>
+
+        <button
+          class="close"
+          onclick="closeProductModal()"
+        >
+          ×
+        </button>
+      </div>
+
+      <div id="formMessage" class="message"></div>
+
+      <form id="productForm">
+
+        <input type="hidden" id="productId">
+
+        <div class="form-group">
+          <label>Product Name</label>
+          <input id="productName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Slug</label>
+          <input id="productSlug" required>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select id="productCategory">
+            <option value="">Select category</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <input
+            type="number"
+            id="productPrice"
+            min="0"
+            step="0.01"
+            value="0"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Stock</label>
+          <input
+            type="number"
+            id="productStock"
+            min="0"
+            step="1"
+            value="0"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Image URL</label>
+          <input
+            id="productImage"
+            placeholder="/assets/transparent-can.jpg"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Short Description</label>
+          <textarea id="productDescription"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Features</label>
+          <textarea
+            id="productFeatures"
+            placeholder="Enter one feature per line"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input
+              type="checkbox"
+              id="productHidden"
+              style="width:auto;"
+            >
+            Hide this product
+          </label>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save Product
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeProductModal()"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+<script>
+
+const API = "/api";
+
+let token = localStorage.getItem("adminToken");
+let products = [];
+let categories = [];
+
+
+// ===============================
+// HELPERS
+// ===============================
+
+function $(id) {
+  return document.getElementById(id);
+}
+
+
+function showMessage(element, message, type = "success") {
+  element.textContent = message;
+  element.className = "message " + type;
+}
+
+
+function hideMessage(element) {
+  element.textContent = "";
+  element.className = "message";
+}
+
+
+async function api(url, options = {}) {
+
+  const headers = {
+    "Content-Type": "application/json",
+    ...(options.headers || {})
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  const response = await fetch(API + url, {
+    ...options,
+    headers
+  });
+
+  let data = {};
+
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      data.message ||
+      data.error ||
+      "Something went wrong."
+    );
+  }
+
+  return data;
+}
+
+
+// ===============================
+// LOGIN
+// ===============================
+
+$("loginForm").addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  hideMessage($("loginMessage"));
+
+  try {
+
+    const data = await api("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
+
+    token =
+      data.token ||
+      data.accessToken ||
+      data.access_token;
+
+    if (!token) {
+      throw new Error("Login succeeded but no token was returned.");
+    }
+
+    localStorage.setItem("adminToken", token);
+
+    showDashboard();
+
+  } catch (error) {
+
+    showMessage(
+      $("loginMessage"),
+      error.message,
+      "error"
+    );
+
+  }
+
+});
+
+
+// ===============================
+// SHOW DASHBOARD
+// ===============================
+
+async function showDashboard() {
+
+  $("loginPage").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+
+  await loadCategories();
+  await loadProducts();
+  await loadStats();
+}
+
+
+function logout() {
+
+  localStorage.removeItem("adminToken");
+  token = null;
+
+  $("dashboard").classList.add("hidden");
+  $("loginPage").classList.remove("hidden");
+
+  $("password").value = "";
+}
+
+
+// ===============================
+// PRODUCTS
+// ===============================
+
+async function loadProducts() {
+
+  try {
+
+    const data = await api("/admin/products");
+
+    products =
+      Array.isArray(data)
+        ? data
+        : data.products || data.data || [];
+
+    renderProducts();
+
+    $("productCount").textContent =
+      products.length;
+
+  } catch (error) {
+
+    $("products").innerHTML =
+      `<p style="color:#b00020;">
+        ${escapeHtml(error.message)}
+      </p>`;
+
+  }
+}
+
+
+function renderProducts() {
+
+  if (!products.length) {
+
+    $("products").innerHTML =
+      `<p style="color:#777;">
+        No products found.
+      </p>`;
+
+    return;
+  }
+
+  $("products").innerHTML = products.map(product => {
+
+    const image =
+      product.image ||
+      "/assets/placeholder.jpg";
+
+    const price =
+      Number(product.price || 0);
+
+    const status =
+      product.hidden
+        ? "Hidden"
+        : "Visible";
+
+    return `
+      <div class="product-row">
+
+        <img
+          src="${escapeAttribute(image)}"
+          alt="${escapeAttribute(product.name || "Product")}"
+          onerror="this.style.visibility='hidden'"
+        >
+
+        <div class="product-info">
+
+          <h3>
+            ${escapeHtml(product.name || "Unnamed Product")}
+          </h3>
+
+          <p>
+            Price:
+            ${price > 0 ? "₦" + price.toLocaleString() : "Contact for price"}
+          </p>
+
+          <p>
+            Stock: ${Number(product.stock || 0)}
+          </p>
+
+          <p>
+            Status: ${status}
+          </p>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="btn btn-secondary"
+            onclick="editProduct(${product.id})"
+          >
+            Edit
+          </button>
+
+          <button
+            class="btn btn-danger"
+            onclick="deleteProduct(${product.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+// ===============================
+// CATEGORIES
+// ===============================
+
+async function loadCategories() {
+
+  try {
+
+    const data = await api("/categories");
+
+    categories =
+      Array.isArray(data)
+        ? data
+        : data.categories || data.data || [];
+
+    $("productCategory").innerHTML =
+      `<option value="">Select category</option>` +
+      categories.map(category => `
+        <option value="${category.id}">
+          ${escapeHtml(category.name)}
+        </option>
+      `).join("");
+
+  } catch (error) {
+
+    console.error("Category loading error:", error);
+
+  }
+}
+
+
+// ===============================
+// ADD PRODUCT
+// ===============================
+
+function openProductModal(product = null) {
+
+  $("productModal").classList.remove("hidden");
+
+  hideMessage($("formMessage"));
+
+  $("productForm").reset();
+
+  $("productId").value = "";
+
+  $("modalTitle").textContent =
+    product ? "Edit Product" : "Add Product";
+
+  if (product) {
+
+    $("productId").value =
+      product.id || "";
+
+    $("productName").value =
+      product.name || "";
+
+    $("productSlug").value =
+      product.slug || "";
+
+    $("productCategory").value =
+      product.category_id ||
+      product.categoryId ||
+      "";
+
+    $("productPrice").value =
+      product.price || 0;
+
+    $("productStock").value =
+      product.stock || 0;
+
+    $("productImage").value =
+      product.image || "";
+
+    $("productDescription").value =
+      product.description || "";
+
+    $("productFeatures").value =
+      Array.isArray(product.features)
+        ? product.features.join("\n")
+        : product.features || "";
+
+    $("productHidden").checked =
+      !!product.hidden;
+  }
+}
+
+
+function closeProductModal() {
+  $("productModal").classList.add("hidden");
+}
+
+
+$("productForm").addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  hideMessage($("formMessage"));
+
+  const id = $("productId").value;
+
+  const features =
+    $("productFeatures").value
+      .split("\n")
+      .map(x => x.trim())
+      .filter(Boolean);
+
+  const product = {
+
+    name: $("productName").value.trim(),
+
+    slug: $("productSlug").value.trim(),
+
+    category_id:
+      $("productCategory").value
+        ? Number($("productCategory").value)
+        : null,
+
+    price:
+      Number($("productPrice").value || 0),
+
+    stock:
+      Number($("productStock").value || 0),
+
+    image:
+      $("productImage").value.trim(),
+
+    description:
+      $("productDescription").value.trim(),
+
+    features,
+
+    hidden:
+      $("productHidden").checked
+
+  };
+
+  try {
+
+    if (id) {
+
+      await api(`/admin/products/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(product)
+      });
+
+    } else {
+
+      await api("/admin/products", {
+        method: "POST",
+        body: JSON.stringify(product)
+      });
+
+    }
+
+    closeProductModal();
+
+    await loadProducts();
+
+  } catch (error) {
+
+    showMessage(
+      $("formMessage"),
+      error.message,
+      "error"
+    );
+
+  }
+
+});
+
+
+// ===============================
+// EDIT
+// ===============================
+
+function editProduct(id) {
+
+  const product =
+    products.find(p => Number(p.id) === Number(id));
+
+  if (!product) {
+    alert("Product not found.");
+    return;
+  }
+
+  openProductModal(product);
+}
+
+
+// ===============================
+// DELETE
+// ===============================
+
+async function deleteProduct(id) {
+
+  const product =
+    products.find(p => Number(p.id) === Number(id));
+
+  const name =
+    product?.name || "this product";
+
+  if (!confirm(
+    `Are you sure you want to delete "${name}"?`
+  )) {
+    return;
+  }
+
+  try {
+
+    await api(`/admin/products/${id}`, {
+      method: "DELETE"
+    });
+
+    await loadProducts();
+
+  } catch (error) {
+
+    showMessage(
+      $("productMessage"),
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+// ===============================
+// STATS
+// ===============================
+
+async function loadStats() {
+
+  try {
+
+    const data = await api("/admin/stats");
+
+    $("productCount").textContent =
+      data.products ??
+      data.productCount ??
+      products.length;
+
+    $("orderCount").textContent =
+      data.orders ??
+      data.orderCount ??
+      0;
+
+    $("customerCount").textContent =
+      data.customers ??
+      data.customerCount ??
+      0;
+
+    $("messageCount").textContent =
+      data.messages ??
+      data.messageCount ??
+      0;
+
+  } catch (error) {
+
+    console.log(
+      "Stats unavailable:",
+      error.message
+    );
+
+  }
+
+}
+
+
+// ===============================
+// SECURITY HELPERS
+// ===============================
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+function escapeAttribute(value) {
+  return escapeHtml(value);
+}
+
+
+// ===============================
+// START
+// ===============================
+
+if (token) {
+  showDashboard();
+}
+
+</script>
+
+</body>
+</html>
