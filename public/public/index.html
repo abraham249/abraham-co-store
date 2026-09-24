@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Abraham Co Store - Quality Products. Reliable Solutions."
+  >
+
+  <meta
+    name="theme-color"
+    content="#111111"
+  >
+
+  <title>Abraham Co Store</title>
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="header">
+
+    <div class="container header-inner">
+
+      <a href="#home" class="logo">
+        Abraham <span>Co Store</span>
+      </a>
+
+      <nav class="nav" id="main-nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#products">Products</a>
+
+        <a href="#about">About</a>
+
+        <a href="#faq">FAQ</a>
+
+        <a href="#contact">Contact</a>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-btn"
+          onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"
+          aria-label="Products"
+        >
+          🛍️
+        </button>
+
+        <button
+          class="icon-btn"
+          id="cart-button"
+          aria-label="Shopping cart"
+        >
+          🛒
+
+          <span class="badge cart-count">
+            0
+          </span>
+        </button>
+
+        <button
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       ANNOUNCEMENT
+  ========================== -->
+
+  <div
+    id="announcement"
+    style="
+      background:#111;
+      color:#fff;
+      text-align:center;
+      padding:9px 15px;
+      font-size:13px;
+    "
+  >
+    Quality Products. Reliable Solutions.
+  </div>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <span class="hero-label">
+            Welcome to Abraham Co Store
+          </span>
+
+          <h1 id="hero-title">
+            Quality Products.
+            Reliable Solutions.
+          </h1>
+
+          <p id="hero-description">
+            Discover quality products and
+            smart solutions from Abraham Co Store.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              href="#products"
+              class="btn btn-primary"
+            >
+              Shop Products
+            </a>
+
+            <a
+              href="#contact"
+              class="btn btn-outline"
+            >
+              Contact Us
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="features-grid">
+
+          <div class="feature-card">
+
+            <div class="feature-icon">
+              ✓
+            </div>
+
+            <h3>Quality Products</h3>
+
+            <p>
+              Products selected with
+              quality and reliability in mind.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="feature-icon">
+              🚚
+            </div>
+
+            <h3>Delivery Options</h3>
+
+            <p>
+              Delivery options are available
+              during checkout.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="feature-icon">
+              💬
+            </div>
+
+            <h3>Easy Support</h3>
+
+            <p>
+              Contact us when you need
+              help with your order.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <div class="feature-icon">
+              🔒
+            </div>
+
+            <h3>Secure Shopping</h3>
+
+            <p>
+              Your account and order
+              information are protected.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section
+      class="section section-light"
+      id="categories"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="small-title">
+            Explore
+          </div>
+
+          <h2>Shop by Category</h2>
+
+          <p>
+            Browse our available product
+            categories.
+          </p>
+
+        </div>
+
+        <div
+          class="category-grid"
+          id="category-grid"
+        >
+
+          <div class="loading">
+            Loading categories...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+
+    <section
+      class="section"
+      id="products"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="small-title">
+            Our Store
+          </div>
+
+          <h2>Featured Products</h2>
+
+          <p>
+            Find products and solutions
+            available from Abraham Co Store.
+          </p>
+
+        </div>
+
+
+        <div class="product-toolbar">
+
+          <div class="search-box">
+
+            <input
+              type="search"
+              id="product-search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            >
+
+          </div>
+
+
+          <select
+            id="category-filter"
+            class="filter-select"
+          >
+
+            <option value="">
+              All Categories
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div
+          class="product-grid"
+          id="product-grid"
+        >
+
+          <div class="loading">
+
+            <div class="spinner"></div>
+
+            Loading products...
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section
+      class="section section-light"
+      id="about"
+    >
+
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-image">
+            AC
+          </div>
+
+
+          <div class="about-content">
+
+            <div class="section-heading"
+                 style="text-align:left;margin-bottom:15px;">
+
+              <div class="small-title">
+                About Us
+              </div>
+
+              <h2>
+                Quality Products.
+                Reliable Solutions.
+              </h2>
+
+            </div>
+
+            <p>
+              Abraham Co Store provides quality
+              products and practical solutions
+              for customers looking for reliable
+              products at competitive prices.
+            </p>
+
+            <p>
+              From packaging products to gate
+              automation solutions and accessories,
+              we are focused on making shopping
+              simple and convenient.
+            </p>
+
+            <a
+              href="#contact"
+              class="btn btn-dark"
+            >
+              Talk to Us
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAQ
+    ========================== -->
+
+    <section
+      class="section"
+      id="faq"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="small-title">
+            Help Center
+          </div>
+
+          <h2>Frequently Asked Questions</h2>
+
+          <p>
+            Find answers to common questions.
+          </p>
+
+        </div>
+
+
+        <div
+          class="faq-list"
+          id="faq-list"
+        >
+
+          <div class="loading">
+            Loading FAQs...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CHECKOUT
+    ========================== -->
+
+    <section
+      class="section section-light hidden"
+      id="checkout-section"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="small-title">
+            Checkout
+          </div>
+
+          <h2>Complete Your Order</h2>
+
+          <p>
+            Enter your details and submit
+            your order.
+          </p>
+
+        </div>
+
+
+        <div class="checkout-grid">
+
+
+          <div class="checkout-card">
+
+            <h3>
+              Customer Information
+            </h3>
+
+            <form
+              onsubmit="submitOrder(event)"
+            >
+
+              <div class="form-group">
+
+                <label>
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  name="customer_name"
+                  required
+                  placeholder="Enter your full name"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Phone Number
+                </label>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="08012345678"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Delivery Address
+                </label>
+
+                <textarea
+                  name="address"
+                  required
+                  placeholder="Enter your delivery address"
+                ></textarea>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Payment Method
+                </label>
+
+                <select
+                  name="payment_method"
+                  required
+                >
+
+                  <option value="Moniepoint Transfer">
+                    Moniepoint Bank Transfer
+                  </option>
+
+                  <option value="Cash on Delivery">
+                    Cash on Delivery
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="width:100%;"
+              >
+                Place Order
+              </button>
+
+            </form>
+
+          </div>
+
+
+          <div class="checkout-card">
+
+            <h3>
+              Payment Information
+            </h3>
+
+            <p>
+              After submitting your order,
+              payment instructions can be
+              confirmed with Abraham Co Store.
+            </p>
+
+            <div class="payment-box">
+
+              <strong>
+                Bank:
+              </strong>
+
+              <span>
+                Moniepoint
+              </span>
+
+            </div>
+
+
+            <div class="payment-box">
+
+              <strong>
+                Account Name:
+              </strong>
+
+              <span>
+                Ayeni Abraham Ola
+              </span>
+
+            </div>
+
+
+            <div class="payment-box">
+
+              <strong>
+                Account Number:
+              </strong>
+
+              <span>
+                9074828638
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section
+      class="section"
+      id="contact"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="small-title">
+            Contact
+          </div>
+
+          <h2>Let's Talk</h2>
+
+          <p>
+            Have a question or need help?
+            Send us a message.
+          </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+          <div class="contact-info">
+
+            <h2>
+              Abraham Co Store
+            </h2>
+
+            <p>
+              Quality Products.
+              Reliable Solutions.
+            </p>
+
+
+            <div class="contact-item">
+
+              <strong>
+                Phone
+              </strong>
+
+              <a
+                href="tel:09074828638"
+                data-phone
+              >
+                09074828638
+              </a>
+
+            </div>
+
+
+            <div class="contact-item">
+
+              <strong>
+                WhatsApp
+              </strong>
+
+              <a
+                href="https://wa.me/2349074828638"
+                target="_blank"
+                data-whatsapp
+              >
+                Chat on WhatsApp
+              </a>
+
+            </div>
+
+
+            <div class="contact-item">
+
+              <strong>
+                Facebook
+              </strong>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61591989816314"
+                target="_blank"
+                data-facebook
+              >
+                Visit Facebook
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div class="contact-form">
+
+            <h3>
+              Send a Message
+            </h3>
+
+            <br>
+
+            <form
+              onsubmit="submitContact(event)"
+            >
+
+              <div class="form-group">
+
+                <label>
+                  Name
+                </label>
+
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Phone
+                </label>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="Your phone number"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Subject
+                </label>
+
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="What do you need help with?"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>
+                  Message
+                </label>
+
+                <textarea
+                  name="message"
+                  required
+                  placeholder="Write your message..."
+                ></textarea>
+
+              </div>
+
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Send Message
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <h3>
+            Abraham Co Store
+          </h3>
+
+          <p>
+            Quality Products.
+            Reliable Solutions.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Quick Links
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="#home">
+              Home
+            </a>
+
+            <a href="#products">
+              Products
+            </a>
+
+            <a href="#about">
+              About
+            </a>
+
+            <a href="#faq">
+              FAQ
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Products
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="#products">
+              Packaging Products
+            </a>
+
+            <a href="#products">
+              Gate Automation
+            </a>
+
+            <a href="#products">
+              Accessories
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Contact
+          </h4>
+
+          <div class="footer-links">
+
+            <a
+              href="tel:09074828638"
+            >
+              09074828638
+            </a>
+
+            <a
+              href="https://wa.me/2349074828638"
+              target="_blank"
+            >
+              WhatsApp
+            </a>
+
+            <a
+              href="https://www.facebook.com/profile.php?id=61591989816314"
+              target="_blank"
+            >
+              Facebook
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        ©
+        <span id="year"></span>
+        Abraham Co Store.
+        All rights reserved.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       CART
+  ========================== -->
+
+  <div
+    class="cart-overlay"
+    id="cart-overlay"
+  ></div>
+
+
+  <aside
+    class="cart-sidebar"
+    id="cart-sidebar"
+  >
+
+    <div class="cart-header">
+
+      <h2>
+        Your Cart
+      </h2>
+
+      <button
+        class="close-btn"
+        id="close-cart"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="cart-items"
+      id="cart-items"
+    >
+
+      <div class="empty-state">
+
+        <h3>
+          Your cart is empty
+        </h3>
+
+        <p>
+          Add products to continue.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="cart-footer">
+
+      <div class="cart-total">
+
+        <span>
+          Total
+        </span>
+
+        <span id="cart-total">
+          ₦0
+        </span>
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        style="width:100%;"
+        onclick="openCheckout()"
+      >
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       PRODUCT MODAL
+  ========================== -->
+
+  <div
+    class="modal-overlay"
+    id="product-modal"
+  ></div>
+
+
+  <!-- =========================
+       WHATSAPP
+  ========================== -->
+
+  <a
+    href="https://wa.me/2349074828638"
+    target="_blank"
+    class="whatsapp-button"
+    aria-label="Chat on WhatsApp"
+  >
+    ☎
+  </a>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script src="/app.js"></script>
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
