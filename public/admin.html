@@ -427,12 +427,35 @@
 
 
       <!-- QUICK INFORMATION -->
+      
+      </section>
+
+
+      <!-- ORDERS -->
       <section class="section">
 
         <div class="section-header">
-          <h2>Admin Information</h2>
+          <h2>Orders</h2>
+
+          <button
+            class="btn btn-secondary"
+            onclick="loadOrders()"
+          >
+            Refresh Orders
+          </button>
         </div>
 
+        <div id="orderMessage" class="message"></div>
+
+        <div id="orders">
+          Loading orders...
+        </div>
+
+      </section>
+
+
+      <!-- QUICK INFORMATION -->
+      <section class="section">
         <p style="color:#666;line-height:1.6;">
           From this dashboard you will be able to manage your store
           products and, as we continue building the dashboard, orders,
