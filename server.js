@@ -19,7 +19,9 @@ if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
 }
 
 const JWT_SECRET = process.env.JWT_SECRET;
-
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
+});
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 
