@@ -1068,7 +1068,195 @@ async function deleteProduct(id) {
 
 }
 
+// ===============================
+// ORDERS
+// ===============================
 
+let orders = [];
+
+async function loadOrders() {
+
+  try {
+
+    const data = await api("/admin/orders");
+
+    orders = Array.isArray(data)
+      ? data
+      : data.orders || data.data || [];
+
+    renderOrders();
+
+    $("orderCount").textContent = orders.length;
+
+  } catch (error) {
+
+    $("orders").innerHTML =
+      `<p style="color:#b00020;">
+        ${escapeHtml(error.message)}
+      </p>`;
+
+  }
+
+}
+
+function renderOrders() {
+
+  if (!orders.length) {
+
+    $("orders").innerHTML =
+      `<p style="color:#777;">
+        No orders yet.
+      </p>`;
+
+    return;
+  }
+
+  $("orders").innerHTML = orders.map(order => {
+
+    return `
+      <div style="
+        border:1px solid #eee;
+        border-radius:10px;
+        padding:16px;
+        margin-bottom:12px;
+      ">
+
+        <h3>
+          Order #${escapeHtml(order.order_number || order.id)}
+        </h3>
+
+        <p>
+          Customer:
+          ${escapeHtml(order.full_name || "Unknown")}
+        </p>
+
+        <p>
+          Phone:
+          ${escapeHtml(order.phone || "N/A")}
+        </p>
+
+        <p>
+          Total:
+          ₦${Number(order.total || 0).toLocaleString()}
+        </p>
+
+        <label>Order Status</label>
+
+        <select
+          onchange="updateOrderStatus(${Number(order.id)}, this.value)"
+        >
+
+          ${orderStatusOptions(order.status)}
+
+        </select>
+
+        <br><br>
+
+        <label>Payment Status</label>
+
+        <select
+          onchange="updatePaymentStatus(${Number(order.id)}, this.value)"
+        >
+
+          ${paymentStatusOptions(order.payment_status)}
+
+        </select>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+function orderStatusOptions(current) {
+
+  const statuses = [
+    "pending",
+    "confirmed",
+    "processing",
+    "shipped",
+    "delivered",
+    "cancelled"
+  ];
+
+  return statuses.map(status => `
+    <option value="${status}" ${status === current ? "selected" : ""}>
+      ${capitalize(status)}
+    </option>
+  `).join("");
+
+}
+
+function paymentStatusOptions(current) {
+
+  const statuses = [
+    "pending",
+    "paid",
+    "unpaid"
+  ];
+
+  return statuses.map(status => `
+    <option value="${status}" ${status === current ? "selected" : ""}>
+      ${capitalize(status)}
+    </option>
+  `).join("");
+
+}
+
+async function updateOrderStatus(id, status) {
+
+  try {
+
+    await api(`/admin/orders/${id}/status`, {
+      method: "PATCH",
+      body: JSON.stringify({ status })
+    });
+
+    await loadOrders();
+
+  } catch (error) {
+
+    showMessage(
+      $("orderMessage"),
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+async function updatePaymentStatus(id, payment_status) {
+
+  try {
+
+    await api(`/admin/orders/${id}/payment`, {
+      method: "PATCH",
+      body: JSON.stringify({ payment_status })
+    });
+
+    await loadOrders();
+
+  } catch (error) {
+
+    showMessage(
+      $("orderMessage"),
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+function capitalize(text) {
+
+  return String(text || "")
+    .charAt(0).toUpperCase() +
+    String(text || "").slice(1);
+
+}
 // ===============================
 // STATS
 // ===============================
