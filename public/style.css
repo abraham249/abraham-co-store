@@ -33,10 +33,9 @@
 html {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
+  background: #f3f1ec;
   color: var(--text);
   line-height: 1.6;
 }
@@ -280,7 +279,7 @@ ul {
 }
 
 .section-light {
-  background: var(--light);
+  background: #ebe8e1;
 }
 
 .section-heading {
